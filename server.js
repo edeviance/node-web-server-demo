@@ -3,7 +3,6 @@ const hbs = require('hbs');
 const fs = require('fs');
 
 const port = process.env.PORT || 3000;
-
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -39,12 +38,16 @@ hbs.registerHelper('screamIt', (text) => {
 
 app.get('/', (req, res) => {
   // res.send('<h1>Hello Express!!!</h1>');
-  res.send({
-    name: 'Saigal',
-    likes: [
-      'Biking',
-      'Cities'
-    ]
+  // res.send({
+  //   // name: 'Saigal',
+  //   // likes: [
+  //   //   'Biking',
+  //   //   'Cities'
+  //   // ]
+  // });
+  res.render('home.hbs', {
+    pageTitle: 'Home Page',
+    welcomeMessage: 'Welcome to the website'
   });
 });
 
@@ -53,6 +56,12 @@ app.get('/about', (req, res) => {
   res.render('about.hbs', {
     pageTitle: 'About Page',
     pageContent: 'This is an About Page'
+  });
+});
+
+app.get('/projects', (req, res) => {
+  res.render('projects.hbs', {
+    pageTitle: 'Projects Page'
   });
 });
 
